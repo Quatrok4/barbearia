@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/barbearia-frontend/styleagendamento.css">
+  <title>Agendamento - Barbearia</title>
+
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="topo">
+      <div class="logo-area">
+        <h1>✂ Barbearia Prime</h1>
+        <p>Sistema de agendamento online</p>
+      </div>
+
+      <div class="perfil">
+        👤 Olá, Lucas
+      </div>
+    </div>
+
+    <div class="cards">
+
+      <!-- FORMULÁRIO -->
+      <div class="card">
+        <h2>Novo Agendamento</h2>
+
+        <div class="input-group">
+          <label>Serviço</label>
+          <select>
+            <option>Corte Degradê</option>
+            <option>Corte Social</option>
+            <option>Barba</option>
+            <option>Corte + Barba</option>
+            <option>Sobrancelha</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Barbeiro</label>
+          <select>
+            <option>João</option>
+            <option>Marcos</option>
+            <option>Felipe</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Data</label>
+          <input type="date">
+        </div>
+
+        <div class="input-group">
+          <label>Horário</label>
+          <input type="time">
+        </div>
+
+        <button>Confirmar Agendamento</button>
+      </div>
+
+      <!-- AGENDAMENTOS -->
+      <div class="card">
+        <h2>Meus Agendamentos</h2>
+
+        <div class="agendamento">
+          <h3>Corte + Barba</h3>
+          <p>📅 10/05/2026</p>
+          <p>⏰ 14:30</p>
+          <p>✂ Barbeiro: João</p>
+
+          <span class="status">Confirmado</span>
+        </div>
+
+        <div class="agendamento">
+          <h3>Corte Degradê</h3>
+          <p>📅 15/05/2026</p>
+          <p>⏰ 18:00</p>
+          <p>✂ Barbeiro: Felipe</p>
+
+          <span class="status">Aguardando</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
