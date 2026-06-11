@@ -1,90 +1,131 @@
-*{
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-    body{
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', Arial, sans-serif;
+}
 
-    .container{
-      width: 100%;
-      max-width: 400px;
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0f0f0f;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(197, 157, 95, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(197, 157, 95, 0.04) 0%, transparent 50%);
+}
 
-    .container h2{
-      text-align: center;
-      margin-bottom: 30px;
-      color: #333;
-      font-size: 28px;
-    }
+.container {
+  width: 100%;
+  max-width: 420px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 20px;
+  padding: 48px 40px;
+  margin: 20px;
+  box-shadow:
+    0 0 0 1px rgba(197,157,95,0.08),
+    0 24px 64px rgba(0,0,0,0.6);
+}
 
-    .input-group{
-      margin-bottom: 20px;
-    }
+.container::before {
+  content: "✂ Barbearia Prime";
+  display: block;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: #c59d5f;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #2a2a2a;
+}
 
-    .input-group label{
-      display: block;
-      margin-bottom: 8px;
-      color: #555;
-      font-weight: bold;
-    }
+.container h2 {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #f0f0f0;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
 
-    .input-group input{
-      width: 100%;
-      padding: 14px;
-      border: 2px solid #ddd;
-      border-radius: 10px;
-      outline: none;
-      transition: 0.3s;
-      font-size: 15px;
-    }
+.input-group {
+  margin-bottom: 18px;
+}
 
-    .input-group input:focus{
-      border-color: #6d28d9;
-      box-shadow: 0 0 10px rgba(109,40,217,0.2);
-    }
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #888;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
 
-    button{
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      background: #6d28d9;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+.input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid #2e2e2e;
+  border-radius: 10px;
+  background: #111;
+  color: #f0f0f0;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
 
-    button:hover{
-      background: #5b21b6;
-      transform: translateY(-2px);
-    }
+.input-group input::placeholder {
+  color: #444;
+}
 
-    .login-link{
-      text-align: center;
-      margin-top: 20px;
-      color: #555;
-    }
+.input-group input:focus {
+  border-color: #c59d5f;
+  box-shadow: 0 0 0 3px rgba(197, 157, 95, 0.12);
+}
 
-    .login-link a{
-      color: #6d28d9;
-      text-decoration: none;
-      font-weight: bold;
-    }
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #c59d5f, #a8843f);
+  color: #111;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
 
-    .login-link a:hover{
-      text-decoration: underline;
-    }
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 24px;
+  color: #555;
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #c59d5f;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

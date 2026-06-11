@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/barbearia-frontend/styleagendamento.css">
+  <link rel="stylesheet" href="styleagendamento.css">
   <title>Agendamento - Barbearia</title>
-
 </head>
 <body>
 
@@ -18,7 +17,9 @@
       </div>
 
       <div class="perfil">
-        👤 Olá, Lucas
+        <span id="perfil-nome">👤 Carregando...</span>
+        &nbsp;|&nbsp;
+        <a href="#" onclick="logout()" style="color:#c59d5f; text-decoration:none; font-weight:bold;">Sair</a>
       </div>
     </div>
 
@@ -30,7 +31,7 @@
 
         <div class="input-group">
           <label>Serviço</label>
-          <select>
+          <select id="servico">
             <option>Corte Degradê</option>
             <option>Corte Social</option>
             <option>Barba</option>
@@ -41,7 +42,7 @@
 
         <div class="input-group">
           <label>Barbeiro</label>
-          <select>
+          <select id="barbeiro">
             <option>João</option>
             <option>Marcos</option>
             <option>Felipe</option>
@@ -50,44 +51,30 @@
 
         <div class="input-group">
           <label>Data</label>
-          <input type="date">
+          <input type="date" id="data" onchange="carregarAgendamentos()">
         </div>
 
         <div class="input-group">
           <label>Horário</label>
-          <input type="time">
+          <input type="time" id="horario">
         </div>
 
-        <button>Confirmar Agendamento</button>
+        <button onclick="agendar()">Confirmar Agendamento</button>
       </div>
 
       <!-- AGENDAMENTOS -->
       <div class="card">
-        <h2>Meus Agendamentos</h2>
-
-        <div class="agendamento">
-          <h3>Corte + Barba</h3>
-          <p>📅 10/05/2026</p>
-          <p>⏰ 14:30</p>
-          <p>✂ Barbeiro: João</p>
-
-          <span class="status">Confirmado</span>
+        <h2>Horários Ocupados</h2>
+        <div id="lista-agendamentos">
+          <p style="color:#bdbdbd">Selecione uma data para ver os horários ocupados.</p>
         </div>
-
-        <div class="agendamento">
-          <h3>Corte Degradê</h3>
-          <p>📅 15/05/2026</p>
-          <p>⏰ 18:00</p>
-          <p>✂ Barbeiro: Felipe</p>
-
-          <span class="status">Aguardando</span>
-        </div>
-
       </div>
 
     </div>
 
   </div>
+
+  <script src="script.js"></script>
 
 </body>
 </html>
