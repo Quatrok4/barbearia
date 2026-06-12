@@ -1,4 +1,4 @@
-const API = "http://localhost:3000";
+const API = "https://barbearia-backend.onrender.com";
 
 // ─── CADASTRO ────────────────────────────────────────────────────────────────
 async function cadastrar() {
