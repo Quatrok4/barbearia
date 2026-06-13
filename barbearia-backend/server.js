@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors    = require("cors");
+const bcrypt = require("bcryptjs");
 const { Resend } = require("resend");
 const { createClient } = require("@supabase/supabase-js");
 const ws = require("ws");
@@ -49,8 +50,10 @@ app.post("/register", async (req, res) => {
     if (existe)
       return res.status(400).json({ erro: "Email já cadastrado" });
 
+    const senhaHash = await bcrypt.hash(senha, 10);
+
     const { error } = await supabase
-      .from("users").insert([{ nome, email, senha }]);
+      .from("users").insert([{ nome, email, senha: senhaHash }]);
 
     if (error) {
       await registrarLog("erro", `Erro ao cadastrar: ${error.message}`);
@@ -74,9 +77,9 @@ app.post("/login", async (req, res) => {
       return res.status(400).json({ erro: "Preencha todos os campos" });
 
     const { data: user } = await supabase
-      .from("users").select("*").eq("email", email).eq("senha", senha).maybeSingle();
+      .from("users").select("*").eq("email", email).maybeSingle();
 
-    if (!user) {
+    if (!user || !(await bcrypt.compare(senha, user.senha))) {
       await registrarLog("login_invalido", `Tentativa falhou para: ${email}`, null, ip);
       return res.status(401).json({ erro: "Email ou senha inválidos" });
     }
