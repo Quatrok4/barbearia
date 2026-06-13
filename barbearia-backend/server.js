@@ -89,7 +89,7 @@ app.post("/login", async (req, res) => {
     }]);
 
     await resend.emails.send({
-      from: "Barbearia Prime <onboarding@resend.dev>",
+      from: "Barbearia Prime <noreply@barbeariaprime.api.br>",
       to: user.email,
       subject: "Seu código de verificação — Barbearia Prime",
       html: `
