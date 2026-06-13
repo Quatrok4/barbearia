@@ -76,6 +76,8 @@ app.post("/register", async (req, res) => {
 });
 
 // ─── LOGIN passo 1 — valida senha e envia código 2FA ─────────────────────────
+
+
 app.post("/login", async (req, res) => {
   const ip = getIP(req);
   try {
@@ -99,20 +101,8 @@ app.post("/login", async (req, res) => {
       user_id: user.id, codigo, expira_em: expiraEm, usado: false
     }]);
 
-    await transporter.sendMail({
-      from: `"Barbearia Prime" <${process.env.EMAIL_USER}>`,
-      to: user.email,
-      subject: "Seu código de verificação — Barbearia Prime",
-      html: `
-        <div style="font-family:Arial;max-width:400px;margin:auto;padding:30px;border:1px solid #eee;border-radius:12px;">
-          <h2 style="color:#c59d5f;">✂ Barbearia Prime</h2>
-          <p>Seu código de verificação é:</p>
-          <h1 style="letter-spacing:8px;color:#333;">${codigo}</h1>
-          <p style="color:#888;font-size:13px;">Válido por 10 minutos. Não compartilhe com ninguém.</p>
-        </div>
-      `
-    });
-
+    //await transporter.sendMail({
+    
     res.json({ mensagem: "Código enviado para seu email", user_id: user.id });
   } catch (err) {
     await registrarLog("erro", `Exceção /login: ${err.message}`, null, ip);
