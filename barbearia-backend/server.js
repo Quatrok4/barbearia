@@ -1,12 +1,7 @@
 require("dotenv").config();
-console.log("SUPABASE_URL existe?", !!process.env.SUPABASE_URL);
-console.log("SUPABASE_KEY existe?", !!process.env.SUPABASE_KEY);
-console.log("EMAIL_USER existe?", !!process.env.EMAIL_USER);
-console.log("EMAIL_PASS existe?", !!process.env.EMAIL_PASS);
-
 const express = require("express");
 const cors    = require("cors");
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 const { createClient } = require("@supabase/supabase-js");
 const ws = require("ws");
 
@@ -19,14 +14,8 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY
   realtime: { transport: ws },
 });
 
-// ─── Nodemailer (Gmail) ──────────────────────────────────────────────────────
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+// ─── Resend (envio de email) ────────────────────────────────────────────────
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 function gerarCodigo() {
@@ -76,8 +65,6 @@ app.post("/register", async (req, res) => {
 });
 
 // ─── LOGIN passo 1 — valida senha e envia código 2FA ─────────────────────────
-
-
 app.post("/login", async (req, res) => {
   const ip = getIP(req);
   try {
@@ -101,8 +88,20 @@ app.post("/login", async (req, res) => {
       user_id: user.id, codigo, expira_em: expiraEm, usado: false
     }]);
 
-    //await transporter.sendMail({
-    
+    await resend.emails.send({
+      from: "Barbearia Prime <onboarding@resend.dev>",
+      to: user.email,
+      subject: "Seu código de verificação — Barbearia Prime",
+      html: `
+        <div style="font-family:Arial;max-width:400px;margin:auto;padding:30px;border:1px solid #eee;border-radius:12px;">
+          <h2 style="color:#c59d5f;">✂ Barbearia Prime</h2>
+          <p>Seu código de verificação é:</p>
+          <h1 style="letter-spacing:8px;color:#333;">${codigo}</h1>
+          <p style="color:#888;font-size:13px;">Válido por 10 minutos. Não compartilhe com ninguém.</p>
+        </div>
+      `
+    });
+
     res.json({ mensagem: "Código enviado para seu email", user_id: user.id });
   } catch (err) {
     await registrarLog("erro", `Exceção /login: ${err.message}`, null, ip);
