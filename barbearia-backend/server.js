@@ -1,4 +1,9 @@
 require("dotenv").config();
+console.log("SUPABASE_URL existe?", !!process.env.SUPABASE_URL);
+console.log("SUPABASE_KEY existe?", !!process.env.SUPABASE_KEY);
+console.log("EMAIL_USER existe?", !!process.env.EMAIL_USER);
+console.log("EMAIL_PASS existe?", !!process.env.EMAIL_PASS);
+
 const express = require("express");
 const cors    = require("cors");
 const nodemailer = require("nodemailer");
