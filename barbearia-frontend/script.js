@@ -1,4 +1,4 @@
-const API = "https://barbearia-backend.onrender.com";
+const API = "https://barbeariaprime.onrender.com";
 
 // ─── CADASTRO ────────────────────────────────────────────────────────────────
 async function cadastrar() {
